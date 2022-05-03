@@ -1,0 +1,290 @@
+{
+	"info": {
+		"_postman_id": "19c71052-8ed0-406c-a7b0-0154eed8c72f",
+		"name": "DTTcollection",
+		"description": "## Authorization in this collection\n\nIn this api every requests is done with an autherization mechanism. In order to achieve that, while sending every queries we should also provide a bearer token in the header. To get the token sent a \"GET\" request to the auth link.\n\n> [http://localhost/dttsetup/auth](http://localhost/dttsetup/auth)\n\nThen we will get the following result\n\n``` json\n{\n    \"token\": \"e65e39eb944100a1c2750f8d39b7a1e3\"\n}\n\n```\n\nUse this token for the authorization for all api requests.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authorization",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/dttsetup/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"dttsetup",
+						"auth"
+					]
+				},
+				"description": "#### **Getting Authorization Token**\n\nRequest Method: GET\n\nRequest Response: 200 OK\n\nSend a \"Get\" Request to the dttsetup/auth it will provide a token like this\n\n``` json\n{\n    \"token\": \"b4000ae5b75b66aadb17c02e26c89837\"\n}\n\n```\n\nUse the value of the token without to qoutes and open the tab Auth\n\nSelect the type bearer token and paste that value."
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "5652f06dcaa1609cf504032d8300f759",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/dttsetup/create/?facilityname=Apple2&tags=cool, Yummy&city=California&address=66 north hemisphre&zipcode=3322&countrycode=21&phonenumber=98977223",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"dttsetup",
+						"create",
+						""
+					],
+					"query": [
+						{
+							"key": "facilityname",
+							"value": "Apple2",
+							"description": "Enter the facility name here as any text"
+						},
+						{
+							"key": "tags",
+							"value": "cool, Yummy",
+							"description": "Enter the tags, if it has more tags it can be seperated by comma \",\""
+						},
+						{
+							"key": "city",
+							"value": "California",
+							"description": "City as text"
+						},
+						{
+							"key": "address",
+							"value": "66 north hemisphre",
+							"description": "Address as text"
+						},
+						{
+							"key": "zipcode",
+							"value": "3322",
+							"description": "Zipcode as number"
+						},
+						{
+							"key": "countrycode",
+							"value": "21",
+							"description": "Country code as number"
+						},
+						{
+							"key": "phonenumber",
+							"value": "98977223",
+							"description": "Phonenumber as number"
+						}
+					]
+				},
+				"description": "The query params for creating and it's description can be seen here.\n\nREQUEST TYPE: POST\n\nSuccess HTTPResponse: 201 Created\n\nThe request will be success only if it's authorised successfully, inorder to do that please check the description of Authorization in the collection and perform the request"
+			},
+			"response": []
+		},
+		{
+			"name": "Read",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "5652f06dcaa1609cf504032d8300f759",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/dttsetup/read",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"dttsetup",
+						"read"
+					]
+				},
+				"description": "This request is for reading all the facilities and their tags. In-order to successfully achieve result, You need Authorize properly, Please see the Authorization Document to do that.\n\nMETHOD TYPE : GET\n\nEXPECTED RESPONSE: 200 OK\n\nPARAMS: no params is passed"
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "5652f06dcaa1609cf504032d8300f759",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/dttsetup/update/?id=2&fname=Updated name&doc=2001-04-29&tags=-",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"dttsetup",
+						"update",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2",
+							"description": "The id of the facility to update"
+						},
+						{
+							"key": "fname",
+							"value": "Updated name",
+							"description": "The updated name"
+						},
+						{
+							"key": "doc",
+							"value": "2001-04-29",
+							"description": "The updated date in YYYY-MM-DD format"
+						},
+						{
+							"key": "tags",
+							"value": "-",
+							"description": "Updated tags seperated by comma, if not updating tags please put hyphen symbol \" - \"."
+						}
+					]
+				},
+				"description": "The query params and its description can be seen below. In - order have a successfull response from the server the request should be passed with a authorization token. Please review the Authorization documentation for that.\n\nREQUEST METHOD : PUT\n\nEXPECTED RESPONSE: 200 OK"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "5652f06dcaa1609cf504032d8300f759",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/dttsetup/delete/?id=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"dttsetup",
+						"delete",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2",
+							"description": "Deleting facilities ID"
+						}
+					]
+				},
+				"description": "I have provided delete feature. It has only one query parameter which is id\n\nREQUEST TYPE : DELETE\n\nEXPECTED RESPONSE: 200 OK"
+			},
+			"response": []
+		},
+		{
+			"name": "Search",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "5652f06dcaa1609cf504032d8300f759",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/dttsetup/search/?search=apple",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"dttsetup",
+						"search",
+						""
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "apple",
+							"description": "A keyword to search, it can be either Facility name, tag name or facility location"
+						}
+					]
+				},
+				"description": "Query parameters for searching the facility name can be seen below. The value for query parameter can be any keyword which is related to either, Facility name, Tag name or Facility location. Any of the three can be passed and it will provide the required details for it."
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "b4000ae5b75b66aadb17c02e26c89837",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
